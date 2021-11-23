@@ -1,6 +1,6 @@
-pub fn run() {
+pub fn _run() {
   let s1 = String::from("hello");
-  let s2 = s1;
+  let _s2 = s1;
   // println!("{} {}", s1, s2); // この時点でs1の所有権がs2にmove。s1のデータにはアクセス出来ない。
 
   let i1 = 1;
@@ -31,26 +31,26 @@ pub fn run() {
   println!("Heap address of hello: {:?}", &s5.as_ptr());
   println!("Len is: {}", s5.len());
   println!("Cap is: {}", s5.capacity());
-  take_ownership(s5);
+  // take_ownership(s5);
   // println!("{}", s5); // s5は関数の引数として渡して所有権がmoveしたので活用出来ない。
 
   let s6 = String::from("hello");
   println!("Stack address of s6 is: {:p}", &s6);
   println!("Heap address of hello: {:?}", &s6.as_ptr());
   println!("Len is: {}", s6.len());
-  let s7 = take_giveback_ownership(s6); // s6 -> s -> s7と所有権はmove. 24byteのString型が２回移動
-  println!("Stack address of s7 is: {:p}", &s7);
-  println!("Heap address of hello: {:?}", &s7.as_ptr());
-  println!("Len is: {}", s7.len());
+  // let s7 = take_giveback_ownership(s6); // s6 -> s -> s7と所有権はmove. 24byteのString型が２回移動
+  // println!("Stack address of s7 is: {:p}", &s7);
+  // println!("Heap address of hello: {:?}", &s7.as_ptr());
+  // println!("Len is: {}", s7.len());
 
   // 関数で所有権のmoveが発生しないような使い方
-  let s8 = String::from("hello");
-  let len = calculate_length(&s8);
-  println!("The length of '{}' is {}", s8, len);
+  // let s8 = String::from("hello");
+  // let len = calculate_length(&s8);
+  // println!("The length of '{}' is {}", s8, len);
 
-  let mut s9 = String::from("hello");
-  change(&mut s9);
-  println!("{}", s9);
+  // let mut s9 = String::from("hello");
+  // change(&mut s9);
+  // println!("{}", s9);
 
   // mutatbleなreferenceは１つまで。imutatbleなreferenceは複数生成できる。
   let s10 = String::from("hello");
@@ -70,20 +70,20 @@ pub fn run() {
   // println!("{}", r11);
 }
 
-fn take_ownership(s: String) {
-  println!("Stack address of s5 is: {:p}", &s);
-  println!("Heap address of hello: {:?}", &s.as_ptr()); //所有権のmoveすなわちshallow copyなのでHeapのアドレスはs5が参照しているものと同じ
-  println!("Len is: {}", s.len());
-  println!("Cap is: {}", s.capacity());
-  println!("{}", s);
-}
-fn take_giveback_ownership(s: String) -> String {
-  s // Rustの関数は最後の行+セミコロン無しがreturn
-}
-// 引数で参照を受け取る
-fn calculate_length(s: &String) -> usize {
-  s.len()
-}
-fn change(s: &mut String) {
-  s.push_str("_world");
-}
+// fn take_ownership(s: String) {
+//   println!("Stack address of s5 is: {:p}", &s);
+//   println!("Heap address of hello: {:?}", &s.as_ptr()); //所有権のmoveすなわちshallow copyなのでHeapのアドレスはs5が参照しているものと同じ
+//   println!("Len is: {}", s.len());
+//   println!("Cap is: {}", s.capacity());
+//   println!("{}", s);
+// }
+// fn take_giveback_ownership(s: String) -> String {
+//   s // Rustの関数は最後の行+セミコロン無しがreturn
+// }
+// // 引数で参照を受け取る
+// fn calculate_length(s: &String) -> usize {
+//   s.len()
+// }
+// fn change(s: &mut String) {
+//   s.push_str("_world");
+// }

@@ -1,12 +1,12 @@
-enum List {
-  Node(i32, Box<List>),
-  Nil,
-}
+// enum List {
+//   Node(i32, Box<List>),
+//   Nil,
+// }
 
-pub fn run() {
+pub fn _run() {
   //符号なし8bitsの7,000,000のlengthの配列
   // 配列は8MBまでしか容量を持てない。
-  let a1: [u8; 7_000_000] = [1; 7_000_000];
+  let _a1: [u8; 7_000_000] = [1; 7_000_000];
   // let a1: [u8; 9_000_000] = [1; 9_000_000]; // stack overflow
 
   // vector型 -> 可変の配列
